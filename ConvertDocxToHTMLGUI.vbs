@@ -4,6 +4,7 @@
 Const wdFormatFilteredHTML = 10
 Const ForReading = 1
 Const ForWriting = 2
+Const msoEncodingUS_ASCII = 20127
 
 Set objFSO = CreateObject("Scripting.FileSystemObject")
 Set objShell = CreateObject("Shell.Application")
@@ -39,7 +40,7 @@ For Each objFile In objFolder.Files
 
         fileNameWithoutExt = objFSO.GetBaseName(objFile.Path)
         htmlFilePath = objFSO.BuildPath(objFolder.Path, fileNameWithoutExt & ".htm")
-        objDoc.SaveAs2 htmlFilePath, wdFormatFilteredHTML
+        objDoc.SaveAs2 htmlFilePath, wdFormatFilteredHTML, , , , , , , , , msoEncodingUS_ASCII
 
         objDoc.Close False
 
@@ -56,3 +57,4 @@ Set objFSO = Nothing
 Set objShell = Nothing
 
 MsgBox "All files converted", 0, "ITS"
+
