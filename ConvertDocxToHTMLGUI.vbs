@@ -29,6 +29,14 @@ For Each objFile In objFolder.Files
         
         Set objDoc = objWord.Documents.Open(objFile.Path)
 
+		Do While objDoc.Comments.Count > 0
+            objDoc.Comments(1).Delete
+        Loop
+		
+		objDoc.AcceptAllRevisions
+
+        objDoc.Save
+
         fileNameWithoutExt = objFSO.GetBaseName(objFile.Path)
         
         htmlFilePath = objFSO.BuildPath(objFolder.Path, fileNameWithoutExt & ".htm")
